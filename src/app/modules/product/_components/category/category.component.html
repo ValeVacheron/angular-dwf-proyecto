@@ -1,0 +1,20 @@
+<p>category works!</p>
+
+<div class="body-content">
+    <!-- Card -->
+    <div class="card">
+        <!-- Table title  -->
+        <div class="card-header">
+            <h5>Listado de categorías</h5>
+        </div>
+        <!-- Table content-->
+        <table class="table">
+            <tr class="tr-body" *ngFor="let category of categories">
+                <td> {{ category.category_id }} </td>
+                <td> {{ category.code }} </td>
+                <td> {{ category.category }} </td>
+                <td> {{ category.status }} </td>
+            </tr>
+        </table>
+    </div>
+</div>
