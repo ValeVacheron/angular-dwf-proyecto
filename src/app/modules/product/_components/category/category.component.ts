@@ -16,8 +16,8 @@ export class CategoryComponent implements OnInit{
   }
 
   getCategories():void {
-    this.categories.push(new Category(1,'N','Norte',true));
-    this.categories.push(new Category(1,'S','Sur',false));
-    this.categories.push(new Category(1,'NE','Noroeste',true));
+    this.categories.push(new Category(1,'N','Norte',1));
+    this.categories.push(new Category(2,'S','Sur',0));
+    this.categories.push(new Category(3,'NE','Noroeste',1));
   }
 }
