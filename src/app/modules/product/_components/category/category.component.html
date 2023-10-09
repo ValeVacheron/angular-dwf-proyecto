@@ -1,0 +1,24 @@
+<!-- Card -->
+<div class="card">
+    <!-- Table title  -->
+    <div class="card-header">
+        <h5>Listado de categorías</h5>
+    </div>
+    <!-- Table content-->
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Category_ID</th>
+                <th scope="col">Code</th>
+                <th scope="col">Category</th>
+                <th scope="col">Status</th>
+            </tr>
+        </thead>
+        <tr class="tr-body" *ngFor="let category of categories">
+            <td> {{ category.category_id }} </td>
+            <td> {{ category.code }} </td>
+            <td> {{ category.category }} </td>
+            <td> {{ category.status == 0 ? "Inactivo": "Activo" }} </td>
+        </tr>
+    </table>
+</div>
