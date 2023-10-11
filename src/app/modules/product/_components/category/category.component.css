@@ -1,0 +1,8 @@
+div h5 {
+    vertical-align: middle;
+}
+
+div button {
+    float: right;
+    margin-left: -50%;
+}
