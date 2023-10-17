@@ -116,6 +116,7 @@ export class CategoryComponent implements OnInit{
 
   showModalForm(){
     this.form.reset();
+    this.categoryUpdated = 0;
     this.submitted = false;
     $("#modalForm").modal("show");
   }
