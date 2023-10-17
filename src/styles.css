@@ -1,3 +1,129 @@
+/* Table  */
+
+.table-title{
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  
+  .td-status{
+    position: absolute;
+    width: 90px;
+    text-align: center;
+    border-radius: 8px;
+  
+    color: white;
+  }
+  
+  .td-status-enable{
+    background-color: #4e73df;
+  }
+  
+  .td-status-disable{
+    background-color: #e74a3b;
+  }
+  
+  /* Modal  */
+  
+  .modal-content{
+    padding: 0px 8px;
+  }
+  
+  .modal-header{
+    padding: 8px 16px !important;
+  }
+  
+  .form-group{
+    margin-bottom: 16px;
+  }
+  
+  .form-button{  
+    margin-top: 32px;
+    margin-bottom: 16px;
+  
+    text-align: center;
+  }
+  
+  .btn-new{
+    float: right;
+    width: 200px;
+  }
+  
+  .btn-form{
+    width: 200px;
+  }
+  
+  .modal-close-button{
+    border: none;
+    background-color: white;
+  }
+  
+  .modal-close-button-x{
+    color: #8181A5;
+    font-size: 32px;
+  }
+  
+  /* Color  */
+  
+  .color-red{
+    color: red;
+  }
+  
+  /* Icon  */
+  
+  .icon-text-button{
+    font-size: 14px;
+    margin-right: 4px;
+  }
+  
+  .icon-text-ul{
+    font-size: 14px;
+    margin-right: 8px;
+  }
+  
+  .icon-menu{
+    font-size: 14px;
+    cursor: pointer;
+  }
+  
+  .icon-menu:hover{
+    color: blue;
+  }
+  
+  /* ul dropdown  */
+  
+  .dropdown-button{
+    border: none;
+    background-color: white;
+  }
+  
+  .dropdown-item{
+    color: black !important;
+    cursor: pointer;
+  }
+  
+  .dropdown-item:hover{
+    color: white !important;
+  }
+  
+  .enable-item{
+    color: blue !important;
+    cursor: pointer;
+  }
+  
+  .enable-item:hover{
+    color: white !important;
+  }
+  
+  .disable-item{
+    color: red !important;
+    cursor: pointer;
+  }
+  
+  .disable-item:hover{
+    color: white !important;
+  }
+
 /* You can add global styles to this file, and also import other style files */
 @charset "UTF-8";/*!
  * Bootswatch v5.3.1 (https://bootswatch.com)
