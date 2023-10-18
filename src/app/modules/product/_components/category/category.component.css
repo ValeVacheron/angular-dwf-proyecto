@@ -1,8 +1,12 @@
-div h5 {
-    vertical-align: middle;
+div button {
+  float: right;
+  margin-left: -50%;
 }
 
-div button {
-    float: right;
-    margin-left: -50%;
+.td-status-enable{
+    background-color: #4e73df;
+  }
+  
+.td-status-disable{
+  background-color: #e74a3b;
 }

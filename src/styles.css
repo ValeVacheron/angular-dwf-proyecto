@@ -15,14 +15,6 @@
     color: white;
   }
   
-  .td-status-enable{
-    background-color: #4e73df;
-  }
-  
-  .td-status-disable{
-    background-color: #e74a3b;
-  }
-  
   /* Modal  */
   
   .modal-content{
@@ -95,7 +87,7 @@
   .dropdown-button{
     border: none;
     background-color: white;
-  }
+    }
   
   .dropdown-item{
     color: black !important;
