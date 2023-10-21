@@ -8,28 +8,59 @@
             <h5 class="table-title">Listado de categorías</h5>
           </div>
           <div class="col-md">
-            <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">Nueva categoría</button>
+            <button type="button" class="btn btn-primary btn-new" (click)="showModalForm()">
+              <i class="ph ph-plus-circle icon-text-button"></i>
+              Nueva categoría
+            </button>
           </div>
         </div>
     </div>
 
     <!-- Table content-->
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Category_ID</th>
-                <th scope="col">Code</th>
-                <th scope="col">Category</th>
-                <th scope="col">Status</th>
+    <div class="card-body">
+      <table class="table">
+          <thead>
+              <tr>
+                  <th scope="col">Category_ID</th>
+                  <th scope="col">Code</th>
+                  <th scope="col">Category</th>
+                  <th scope="col">Status</th>
+                  <th scope="col">Más</th>
+              </tr>
+          </thead>
+          <tbody>
+            <tr class="tr-body" *ngFor="let category of categories; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td> {{ category.code }} </td>
+                <td> {{ category.category }} </td>
+                <td>
+                  <div class="td-status"
+                  [ngClass]="{'td-status-enable': category.status == 1, 'td-status-disable': category.status == 0}" >
+                    {{ category.status == 0 ? "Inactivo" : "Activo" }}
+                  </div>
+                </td>
+                <td>
+                  <div class="dropdown">
+                    <button class="dropdown-button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <i class="ph ph-dots-three-outline-vertical icon-menu"></i>
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                      <a class="dropdown-item" (click)="updateCategory(category)">
+                        <i class="ph ph-note-pencil icon-text-ul"></i> Editar
+                      </a>
+                      <a *ngIf="category.status == 0" class="dropdown-item enable-item" (click)="enableCategory(category.category_id)">
+                        <i class="ph ph-check-circle icon-text-ul"></i> Activar
+                      </a>
+                      <a *ngIf="category.status == 1" class="dropdown-item disable-item" (click)="disableCategory(category.category_id)">
+                        <i class="ph ph-x-circle icon-text-ul"></i> Desactivar
+                      </a>
+                    </div>
+                  </div>
+                </td>
             </tr>
-        </thead>
-        <tr class="tr-body" *ngFor="let category of categories; let i = index">
-            <td>{{ i + 1 }}</td>
-            <td> {{ category.code }} </td>
-            <td> {{ category.category }} </td>
-            <td> {{ category.status == 0 ? "Inactivo": "Activo" }} </td>
-        </tr>
-    </table>
+          </tbody>
+      </table>
+    </div>
 </div>
 
 <!-- Modal form  -->
@@ -37,7 +68,7 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Nueva categoría</h5>
+          <h5 class="modal-title">{{ categoryUpdated == 0? "Registrar": "Actualizar" }} Categoría</h5>
           <button type="button" class="modal-close-button" data-bs-dismiss="modal" aria-label="Close">
             <span class="modal-close-button-x">&times;</span>
           </button>
