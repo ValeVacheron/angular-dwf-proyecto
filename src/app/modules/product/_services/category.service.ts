@@ -7,5 +7,33 @@ import { Category } from '../_models/category';
 })
 export class CategoryService {
 
-  constructor() { }
+  private url = "http://localhost:8080";
+  private route = "/category";
+
+  constructor(private http: HttpClient) {
+    
+    createCategory(category: any) {
+      return this.http.post(this.url + this.route, category);
+    }
+  
+    enableCategory(id: number) {
+      return this.http.put(this.url + this.route + "/" + id + "/activate", null);
+    }
+  
+    disableCategory(id: number) {
+      return this.http.delete(this.url + this.route + "/" + id);
+    }
+  
+    getCategory(id: number) {
+      return this.http.get<Category[]>(this.url + this.route + "/" + id);
+    }
+  
+    getCategorys() {
+      return this.http.get<Category[]>(this.url + this.route);
+    }
+  
+    updateCategory(category: any, id: number) {
+      return this.http.put(this.url + this.route + "/" + id, category);
+    }
+   }
 }
