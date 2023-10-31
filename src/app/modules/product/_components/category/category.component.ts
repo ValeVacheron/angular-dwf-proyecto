@@ -43,7 +43,7 @@ export class CategoryComponent implements OnInit{
           text: 'La categoría ha sido desactivada',
           background: '#E8F8F8',
           showConfirmButton: false,
-          timer: 2000
+          timer: 5000
         });
 
         this.getCategories(); // consulta categorías con los cambios realizados
@@ -57,7 +57,7 @@ export class CategoryComponent implements OnInit{
           showConfirmButton: false,
           text: err.error.message,
           background: '#F8E8F8',
-          timer: 2000
+          timer: 5000
         });
       }
     );
@@ -82,7 +82,7 @@ export class CategoryComponent implements OnInit{
           text: 'La categoría ha sido activada',
           background: '#E8F8F8',
           showConfirmButton: false,
-          timer: 2000
+          timer: 5000
         });
 
         this.getCategories(); // consulta regiones con los cambios realizados
@@ -96,7 +96,7 @@ export class CategoryComponent implements OnInit{
           showConfirmButton: false,
           text: err.error.message,
           background: '#F8E8F8',
-          timer: 2000
+          timer: 5000
         });
       }
     );
@@ -123,7 +123,7 @@ export class CategoryComponent implements OnInit{
           showConfirmButton: false,
           text: err.error.message,
           background: '#F8E8F8',
-          timer: 2000
+          timer: 5000
         });
       }
     );
@@ -158,7 +158,7 @@ export class CategoryComponent implements OnInit{
           text: 'La región ha sido registrada',
           background: '#E8F8F8',
           showConfirmButton: false,
-          timer: 2000
+          timer: 5000
         });
 
         this.getCategories(); // consulta categorías con los cambios realizados
@@ -174,7 +174,7 @@ export class CategoryComponent implements OnInit{
           showConfirmButton: false,
           text: err.error.message,
           background: '#F8E8F8',
-          timer: 2000
+          timer: 5000
         });
       }
     );
@@ -205,7 +205,7 @@ export class CategoryComponent implements OnInit{
           text: 'La categoría ha sido actualizada',
           background: '#E8F8F8',
           showConfirmButton: false,
-          timer: 2000
+          timer: 5000
         });
 
         this.getCategories(); // consulta categorías con los cambios realizados
@@ -223,7 +223,7 @@ export class CategoryComponent implements OnInit{
           showConfirmButton: false,
           text: err.error.message,
           background: '#F8E8F8',
-          timer: 2000
+          timer: 5000
         });
       }
     );
