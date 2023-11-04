@@ -5,6 +5,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductModule } from './modules/product/product.module';
 import { CategoryService } from './modules/product/_services/category.service';
+import { ProductsModule } from './modules/products/products.module';
+import { ProductService } from './modules/products/_services/product.service';
 
 @NgModule({
   declarations: [
@@ -13,9 +15,13 @@ import { CategoryService } from './modules/product/_services/category.service';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ProductModule
+    ProductModule,
+    ProductsModule
   ],
-  providers: [CategoryService],
+  providers: [
+    CategoryService,
+    ProductService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
