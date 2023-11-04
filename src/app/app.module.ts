@@ -7,6 +7,7 @@ import { ProductModule } from './modules/product/product.module';
 import { CategoryService } from './modules/product/_services/category.service';
 import { ProductsModule } from './modules/products/products.module';
 import { ProductService } from './modules/products/_services/product.service';
+import {NgxPhotoEditorModule} from "ngx-photo-editor";
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProductService } from './modules/products/_services/product.service';
     BrowserModule,
     AppRoutingModule,
     ProductModule,
-    ProductsModule
+    ProductsModule,
+    NgxPhotoEditorModule
   ],
   providers: [
     CategoryService,
