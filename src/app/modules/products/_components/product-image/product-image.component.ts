@@ -22,6 +22,7 @@ export class ProductImageComponent {
 
   product: any | Product = new Product(); // producto consultado
   gtin: any | string = ""; // gtin del producto consultado
+  product_images: any | ProductImage = new ProductImage(); // imagen del producto
 
   categories: Category[] = []; // lista de categorías
   category: any | Category = new Category(0,"","",0); // datos de la categoría del producto
@@ -29,9 +30,9 @@ export class ProductImageComponent {
   // formulario de actualización
   form = this.formBuilder.group({
     product_id: ["", [Validators.required]],
-    gtin: ["", [Validators.required, Validators.pattern("^[0-9]*$")]],
+    gtin: ["", [Validators.required, Validators.pattern('^[0-9]{13}$')]],
     product: ["", [Validators.required, Validators.pattern("^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ ]+$")]],
-    description: ["", [Validators.required, Validators.pattern("^[a-zA-ZÀ-ÿ][a-zA-ZÀ-ÿ ]+$")]],
+    description: ["", [Validators.required]],
     price: ["", [Validators.required, Validators.pattern("^([0-9]*[.])?[0-9]+")]],
     stock: ["", [Validators.required, Validators.pattern("^[0-9]*$")]],
     category_id: ["", [Validators.required]]
@@ -53,6 +54,7 @@ export class ProductImageComponent {
     this.gtin = this.route.snapshot.paramMap.get('gtin');
     if(this.gtin){
       this.getProduct();
+      this.getImage();
     }else{
       Swal.fire({
         position: 'top-end',
@@ -81,7 +83,27 @@ export class ProductImageComponent {
           icon: 'error',
           toast: true,
           showConfirmButton: false,
-          text: err.error.message,
+          text: 'producto no encontrado',
+          background: '#F8E8F8',
+          timer: 5000
+        });
+      }
+    );
+  }
+
+  getImage(){
+    this.productImageService.getProductImages(this.gtin).subscribe(
+      res => {
+        this.product_images = res; // asigna la respuesta de la API a la variable de imagen de producto
+      },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          toast: true,
+          showConfirmButton: false,
+          text: 'imágenes no encontradas',
           background: '#F8E8F8',
           timer: 5000
         });

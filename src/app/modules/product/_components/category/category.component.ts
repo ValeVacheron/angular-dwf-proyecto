@@ -61,14 +61,6 @@ export class CategoryComponent implements OnInit{
         });
       }
     );
-    /*for(let category of this.categories){
-      if(category.category_id == id){
-        category.status = 0;
-        alert("¡Categoría desactivada exitosamente!");
-        break;
-      }
-    }
-    console.log("SALIR")*/
   }
   
   enableCategory(id: number){
@@ -100,13 +92,6 @@ export class CategoryComponent implements OnInit{
         });
       }
     );
-    /*for(let category of this.categories){
-      if(category.category_id == id){
-        category.status = 1;
-        alert("¡Categoría activada exitosamente!");
-        break;
-      }
-    }*/
   }
 
   getCategories():void {
@@ -127,9 +112,6 @@ export class CategoryComponent implements OnInit{
         });
       }
     );
-    /*this.categories.push(new Category(1,'N','Norte',1));
-    this.categories.push(new Category(2,'S','Sur',0));
-    this.categories.push(new Category(3,'NE','Noroeste',1));*/
   }
 
   onSubmit(){
@@ -178,20 +160,6 @@ export class CategoryComponent implements OnInit{
         });
       }
     );
-    /*this.submitted = true;
-
-    if(this.form.invalid) return;
-
-    this.submitted = false;
-
-    let category = new Category(0, this.form.controls['code'].value!, this.form.controls['category'].value!, 1);
-    console.log(this.form.value);
-    this.categories.push(category);
-    
-    $("#modalForm").modal("hide");
-
-    alert("¡Categoría guardada exitosamente!");*/
-
   }
 
   onSubmitUpdate(){
@@ -227,26 +195,6 @@ export class CategoryComponent implements OnInit{
         });
       }
     );
-    /*this.submitted = true;
-
-    if(this.form.invalid) return;
-
-    this.submitted = false;
-
-    for(let category of this.categories){
-      if(category.category_id == this.categoryUpdated){
-        category.category = this.form.controls['category'].value!;
-        category.code = this.form.controls['code'].value!;
-        break;
-      }
-    }
-    
-    $("#modalForm").modal("hide");
-
-    alert("Categoría actualizada exitosamente!");
-
-    this.categoryUpdated = 0;*/
-
   }
 
   updateCategory(category: Category){
