@@ -8,11 +8,11 @@ import { ProductImage } from '../_models/product-image';
 export class ProductImageService {
 
   private url = "http://localhost:8080";
-  private route = "/customer-image";
+  private route = "/product-image";
 
   constructor(private http: HttpClient) { }
 
-  createProductImage(product_image: any) {
+  uploadProductImage(product_image: any) {
     return this.http.post(this.url + this.route, product_image);
   }
   

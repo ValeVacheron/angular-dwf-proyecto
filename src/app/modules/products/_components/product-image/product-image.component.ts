@@ -22,7 +22,7 @@ export class ProductImageComponent {
 
   product: any | Product = new Product(); // producto consultado
   gtin: any | string = ""; // gtin del producto consultado
-  product_images: any | ProductImage = new ProductImage(); // imagen del producto
+  product_images: ProductImage[] = []; // imagen del producto
 
   categories: Category[] = []; // lista de categorías
   category: any | Category = new Category(0,"","",0); // datos de la categoría del producto
@@ -92,10 +92,16 @@ export class ProductImageComponent {
   }
 
   getImage(){
-    this.productImageService.getProductImages(this.gtin).subscribe(
-      res => {
-        this.product_images = res; // asigna la respuesta de la API a la variable de imagen de producto
+    this.productImageService.getProductImages(this.product.product_id).subscribe(
+      (product_images: ProductImage[]) => {
+        product_images.forEach(product_image => {
+          product_image.image = 'assets/img/${product_image.image}'; // URL completa de la imagen
+        });
+        this.product_images = product_images;
       },
+      // res => {
+      //   this.product_images = res; // asigna la respuesta de la API a la variable de imagen de producto
+      // },
       err => {
         // muestra mensaje de error
         Swal.fire({
@@ -181,39 +187,73 @@ export class ProductImageComponent {
 
   updateProductImage(image: string){
     let productImage: ProductImage = new ProductImage();
-    productImage.product_image_id = this.product.image.product_image_id;
     productImage.image = image;
+    if(this.product_images.length === 0) {
+      productImage.product_image_id = 1;
+      this.productImageService.uploadProductImage(productImage).subscribe(
+        res => {
+          // muestra mensaje de confirmación
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true,
+            text: 'La imagen ha sido añadida',
+            background: '#E8F8F8',
+            showConfirmButton: false,
+            timer: 5000
+          });
+  
+          this.getProduct(); // consulta el producto con los cambios realizados
+      
+          $("#modalForm").modal("hide"); // oculta el modal de registro
+        },
+        err => {
+          // muestra mensaje de error
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            text: err.error.message,
+            background: '#F8E8F8',
+            timer: 5000
+          });
+        }
+      );
+    }
+    else {
+      productImage.product_image_id = this.product.image.product_image_id;
+      this.productImageService.updateProductImage(productImage).subscribe(
+        res => {
+          // muestra mensaje de confirmación
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            toast: true,
+            text: 'La imagen ha sido actualizada',
+            background: '#E8F8F8',
+            showConfirmButton: false,
+            timer: 5000
+          });
 
-    this.productImageService.updateProductImage(productImage).subscribe(
-      res => {
-        // muestra mensaje de confirmación
-        Swal.fire({
-          position: 'top-end',
-          icon: 'success',
-          toast: true,
-          text: 'La imagen ha sido actualizada',
-          background: '#E8F8F8',
-          showConfirmButton: false,
-          timer: 5000
-        });
-
-        this.getProduct(); // consulta el cliente con los cambios realizados
-    
-        $("#modalForm").modal("hide"); // oculta el modal de registro
-      },
-      err => {
-        // muestra mensaje de error
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          toast: true,
-          showConfirmButton: false,
-          text: err.error.message,
-          background: '#F8E8F8',
-          timer: 5000
-        });
-      }
-    );
+          this.getProduct(); // consulta el producto con los cambios realizados
+      
+          $("#modalForm").modal("hide"); // oculta el modal de registro
+        },
+        err => {
+          // muestra mensaje de error
+          Swal.fire({
+            position: 'top-end',
+            icon: 'error',
+            toast: true,
+            showConfirmButton: false,
+            text: err.error.message,
+            background: '#F8E8F8',
+            timer: 5000
+          });
+        }
+      );
+    }
   }
 
   // catalogues
