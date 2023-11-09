@@ -188,75 +188,42 @@ export class ProductImageComponent {
   updateProductImage(image: string){
     let productImage: ProductImage = new ProductImage();
     productImage.image = image;
-    if(this.product_images.length === 0) {
-      productImage.product_image_id = 1;
-      this.productImageService.uploadProductImage(productImage).subscribe(
-        res => {
-          // muestra mensaje de confirmación
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            toast: true,
-            text: 'La imagen ha sido añadida',
-            background: '#E8F8F8',
-            showConfirmButton: false,
-            timer: 5000
-          });
-  
-          this.getProduct(); // consulta el producto con los cambios realizados
-      
-          $("#modalForm").modal("hide"); // oculta el modal de registro
-        },
-        err => {
-          // muestra mensaje de error
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            toast: true,
-            showConfirmButton: false,
-            text: err.error.message,
-            background: '#F8E8F8',
-            timer: 5000
-          });
-        }
-      );
-    }
-    else {
-      productImage.product_image_id = this.product.image.product_image_id;
-      this.productImageService.updateProductImage(productImage).subscribe(
-        res => {
-          // muestra mensaje de confirmación
-          Swal.fire({
-            position: 'top-end',
-            icon: 'success',
-            toast: true,
-            text: 'La imagen ha sido actualizada',
-            background: '#E8F8F8',
-            showConfirmButton: false,
-            timer: 5000
-          });
+    productImage.product_id = this.product.product_id
+    let numimages = this.product_images.length
+    productImage.product_image_id = numimages + 1;
+    this.productImageService.uploadProductImage(productImage).subscribe(
+      res => {
+        // muestra mensaje de confirmación
+        Swal.fire({
+          position: 'top-end',
+          icon: 'success',
+          toast: true,
+          text: 'La imagen ha sido añadida',
+          background: '#E8F8F8',
+          showConfirmButton: false,
+          timer: 5000
+        });
 
-          this.getProduct(); // consulta el producto con los cambios realizados
-      
-          $("#modalForm").modal("hide"); // oculta el modal de registro
-        },
-        err => {
-          // muestra mensaje de error
-          Swal.fire({
-            position: 'top-end',
-            icon: 'error',
-            toast: true,
-            showConfirmButton: false,
-            text: err.error.message,
-            background: '#F8E8F8',
-            timer: 5000
-          });
-        }
-      );
-    }
+        this.getProduct(); // consulta el producto con los cambios realizados
+    
+        $("#modalForm").modal("hide"); // oculta el modal de registro
+      },
+      err => {
+        // muestra mensaje de error
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          toast: true,
+          showConfirmButton: false,
+          text: err.error.message,
+          background: '#F8E8F8',
+          timer: 5000
+        });
+      }
+    );
   }
 
-  // catalogues
+  // categories
 
   getCategories(){
     this.categoryService.getCategories().subscribe(
