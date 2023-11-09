@@ -54,7 +54,6 @@ export class ProductImageComponent {
     this.gtin = this.route.snapshot.paramMap.get('gtin');
     if(this.gtin){
       this.getProduct();
-      this.getImage();
     }else{
       Swal.fire({
         position: 'top-end',
@@ -75,6 +74,7 @@ export class ProductImageComponent {
       res => {
         this.product = res; // asigna la respuesta de la API a la variable de producto
         this.getCategory(this.product.category_id);
+        this,this.getImages();
       },
       err => {
         // muestra mensaje de error
@@ -91,17 +91,15 @@ export class ProductImageComponent {
     );
   }
 
-  getImage(){
+  getImages(){
     this.productImageService.getProductImages(this.product.product_id).subscribe(
       (product_images: ProductImage[]) => {
         product_images.forEach(product_image => {
-          product_image.image = 'assets/img/${product_image.image}'; // URL completa de la imagen
+          let image_route = product_image.image;
+          product_image.image = 'assets/img/imagenes/' + image_route; // URL completa de la imagen
         });
-        this.product_images = product_images;
+      this.product_images = product_images;
       },
-      // res => {
-      //   this.product_images = res; // asigna la respuesta de la API a la variable de imagen de producto
-      // },
       err => {
         // muestra mensaje de error
         Swal.fire({
@@ -274,7 +272,6 @@ export class ProductImageComponent {
       resizeToWidth: 360,
       resizeToHeight: 360,
     }).subscribe(data => {
-      console.log(data);
       this.updateProductImage(data.base64!);
     });
   }
